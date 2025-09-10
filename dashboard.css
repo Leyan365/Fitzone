@@ -1,0 +1,83 @@
+body {
+    background-color: black;
+    color: white;
+}
+
+.container {
+    padding: 20px;
+}
+
+.table-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+table {
+    color: white;
+    border-collapse: collapse;
+    width: 80%;
+}
+
+th,
+td {
+    border: 1px solid #28a745;
+    padding: 10px;
+    text-align: center;
+}
+
+a {
+    color: red;
+    text-decoration: none;
+}
+
+label,
+input,
+select,
+button {
+    color: white;
+}
+
+input,
+select {
+    background-color: #363434;
+    border: 1px solid white;
+    padding: 5px;
+}
+
+button {
+    background-color: #28a745;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+/* New styles for the query form */
+form label {
+    font-size: 1.4em; /* Increases font size of "Your Query:" */
+}
+
+textarea {
+    width: 50%; /* Sets the textarea width to 50% of the screen */
+    padding: 10px;
+    background-color: #363434;
+    color: white;
+    border: 1px solid white;
+    font-size: 1.5em;
+    border-radius: 5px;
+}
+
+button[name="submit_query"] {
+    font-size: 1.1em; /* Increases font size of "Submit Query" button */
+    padding: 10px 15px; /* Adds some padding for better appearance */
+    border-radius: 5px;
+}
+
+h2,
+h3 {
+    color: #f2f2f2;
+}

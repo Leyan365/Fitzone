@@ -1,0 +1,116 @@
+/*-----------------------------------
+   Base & Utility
+-----------------------------------*/
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden;
+  background-color: #000;
+  color: #fff;
+}
+
+main, section, footer {
+  background-color: #000;
+}
+
+/*-----------------------------------
+   Hero Header
+-----------------------------------*/
+.header-with-bg {
+  position: relative;
+  width: 100%;
+  height: 70vh;
+  min-height: 400px;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)),
+    url('images/background.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 0; /* Ensure header starts at top */
+  padding-top: 60px; /* Space for fixed navbar */
+}
+
+/*-----------------------------------
+   Navbar Styles
+-----------------------------------*/
+.navbar {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  padding: 1rem 2rem;
+}
+
+/* Ensure navbar collapse is transparent on desktop */
+.navbar-collapse {
+  background-color: transparent !important;
+}
+
+/* Navbar links */
+.navbar-dark .navbar-nav .nav-link {
+  color: rgba(255,255,0,0.85);
+  font-weight: bold;
+  font-size: 1.1rem;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+}
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link.active {
+  color: #fff;
+}
+
+/* Offcanvas width & bg */
+.offcanvas-start {
+  width: 250px;
+}
+.offcanvas,
+.offcanvas-header,
+.offcanvas-body {
+  background-color: transparent !important;
+  color: #fff;
+}
+
+/* Ensure offcanvas background only applies when active */
+.offcanvas:not(.show) {
+  background-color: transparent !important;
+}
+
+/*-----------------------------------
+   Images & Hover Effects
+-----------------------------------*/
+.img-fluid { max-width: 100%; height: auto; }
+.hover-zoom { transition: transform 0.3s ease; }
+.hover-zoom:hover { transform: scale(1.05); }
+
+/*-----------------------------------
+   Dividers
+-----------------------------------*/
+hr.feature-divider {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,0.75), rgba(255,255,255,0));
+  margin: 3rem 0;
+}
+
+/*-----------------------------------
+   Service Cards
+-----------------------------------*/
+.service-card {
+  border: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 1rem 3rem rgba(0,0,0,0.5);
+}
+.service-card .card-img-top {
+  height: 250px;
+  object-fit: cover;
+}
+
+/*-----------------------------------
+   Custom Text Color
+-----------------------------------*/
+.text-yellow { color: #ffc107 !important; }
