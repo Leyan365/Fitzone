@@ -1,6 +1,17 @@
 <?php
-include('includes/header.php');
+require_once __DIR__ . '/includes/helpers.php';
 ?>
+
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitZone Fitness Center</title>
+    <?php include('includes/head_assets.php'); ?>
+</head>
+<body>
+<?php include('includes/header.php'); ?>
 
 <header class="header-with-bg">
     <div class="container d-flex flex-column align-items-center justify-content-center h-100 text-white">
@@ -114,7 +125,6 @@ include('includes/header.php');
 
     <?php include('includes/footer.php');?>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

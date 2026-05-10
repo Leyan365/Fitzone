@@ -1,5 +1,7 @@
 <?php
 // --- Customer-Specific Logic ---
+require_role($current_user, ['customer']);
+
 $query_message = '';
 
 // Retrieve Admin and Management users for the dropdown
@@ -14,19 +16,32 @@ $staff_stmt->close();
 
 // Handle query submission
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_query'])) {
+    require_csrf();
+
     $query_text = trim($_POST['query_text']);
     $recipient_id = (int)$_POST['recipient_id'];
 
     if (!empty($query_text) && !empty($recipient_id)) {
-        $stmt = $conn->prepare("INSERT INTO queries (customer_id, recipient_id, query_text) VALUES (?, ?, ?)");
-        $stmt->bind_param("iis", $user_id, $recipient_id, $query_text);
+        $recipient_stmt = $conn->prepare("SELECT id FROM users WHERE id = ? AND role IN ('admin', 'management')");
+        $recipient_stmt->bind_param("i", $recipient_id);
+        $recipient_stmt->execute();
+        $recipient_exists = $recipient_stmt->get_result()->num_rows > 0;
+        $recipient_stmt->close();
 
-        if ($stmt->execute()) {
-            $query_message = "<div class='alert alert-success mt-3'>Your query has been submitted successfully!</div>";
+        if (!$recipient_exists) {
+            $query_message = "<div class='alert alert-warning mt-3'>Please select a valid staff member.</div>";
         } else {
-            $query_message = "<div class='alert alert-danger mt-3'>Failed to submit your query. Please try again.</div>";
+            $stmt = $conn->prepare("INSERT INTO queries (customer_id, recipient_id, query_text) VALUES (?, ?, ?)");
+            $stmt->bind_param("iis", $user_id, $recipient_id, $query_text);
+
+            if ($stmt->execute()) {
+                $query_message = "<div class='alert alert-success mt-3'>Your query has been submitted successfully!</div>";
+            } else {
+                error_log('Customer query submission failed: ' . $stmt->error);
+                $query_message = "<div class='alert alert-danger mt-3'>Failed to submit your query. Please try again.</div>";
+            }
+            $stmt->close();
         }
-        $stmt->close();
     } else {
         $query_message = "<div class='alert alert-warning mt-3'>Please select a recipient and enter a query.</div>";
     }
@@ -62,18 +77,18 @@ $query_stmt->close();
                     <div class="accordion-item bg-dark">
                         <h2 class="accordion-header" id="heading<?php echo $index; ?>">
                             <button class="accordion-button bg-dark text-white collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<?php echo $index; ?>" aria-expanded="false" aria-controls="collapse<?php echo $index; ?>">
-                                Query to <?php echo htmlspecialchars($query['recipient_name']); ?> on <?php echo date("F j, Y", strtotime($query['created_at'])); ?>
-                                <span class="ms-auto badge <?php echo ($query['status'] == 'replied') ? 'bg-success' : 'bg-warning'; ?>"><?php echo ucfirst($query['status']); ?></span>
+                                Query to <?php echo e($query['recipient_name']); ?> on <?php echo e(date("F j, Y", strtotime($query['created_at']))); ?>
+                                <span class="ms-auto badge <?php echo ($query['status'] == 'replied') ? 'bg-success' : 'bg-warning'; ?>"><?php echo e(ucfirst($query['status'])); ?></span>
                             </button>
                         </h2>
                         <div id="collapse<?php echo $index; ?>" class="accordion-collapse collapse" aria-labelledby="heading<?php echo $index; ?>" data-bs-parent="#queriesAccordion">
                             <div class="accordion-body">
                                 <strong>Your Query:</strong>
-                                <p class="text-white-50 fst-italic">"<?php echo htmlspecialchars($query['query_text']); ?>"</p>
+                                <p class="text-white-50 fst-italic">"<?php echo e($query['query_text']); ?>"</p>
                                 <hr>
                                 <strong>Reply:</strong>
                                 <?php if (!empty($query['reply_text'])): ?>
-                                    <p class="text-white">"<?php echo htmlspecialchars($query['reply_text']); ?>"</p>
+                                    <p class="text-white">"<?php echo e($query['reply_text']); ?>"</p>
                                 <?php else: ?>
                                     <p class="text-white-50">No reply yet. A staff member will get back to you soon.</p>
                                 <?php endif; ?>
@@ -91,13 +106,14 @@ $query_stmt->close();
     <div class="card-header dashboard-card-header"><h4>Have a Question?</h4></div>
     <div class="card-body">
         <form action="dashboard.php" method="post">
+            <?php echo csrf_field(); ?>
             <div class="mb-3">
                 <label for="recipient_id" class="form-label">Send query to:</label>
                 <select class="form-select" name="recipient_id" id="recipient_id" required>
                     <option value="" disabled selected>-- Select a Staff Member --</option>
                     <?php foreach ($staff_members as $staff): ?>
-                        <option value="<?php echo $staff['id']; ?>">
-                            <?php echo htmlspecialchars($staff['name']) . ' (' . htmlspecialchars($staff['role']) . ')'; ?>
+                        <option value="<?php echo e($staff['id']); ?>">
+                            <?php echo e($staff['name']) . ' (' . e($staff['role']) . ')'; ?>
                         </option>
                     <?php endforeach; ?>
                 </select>

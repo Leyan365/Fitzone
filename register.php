@@ -1,9 +1,12 @@
 <?php
+require_once __DIR__ . '/includes/helpers.php';
 include('db.php'); // Your database connection file
 
 $registration_message = ''; // To store success/error messages
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    require_csrf();
+
     $name = trim($_POST['name']);
     $email = filter_var(trim($_POST['email']), FILTER_VALIDATE_EMAIL);
     $password_input = trim($_POST['password']); // Store plain password for hashing
@@ -33,10 +36,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             if ($stmt->execute()) {
                 // Redirect on success
-                header("Location: login.php?registered=true");
-                exit();
+                redirect('login.php?registered=true');
             } else {
-                $registration_message = "<div class='alert alert-danger'>Error: " . $stmt->error . "</div>";
+                error_log('Registration failed: ' . $stmt->error);
+                $registration_message = "<div class='alert alert-danger'>Registration failed. Please try again.</div>";
             }
             $stmt->close();
         }
@@ -51,8 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - FitZone</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="custom.css">
+    <?php include('includes/head_assets.php'); ?>
     <style>
         /* Specific styles for the registration page background and form */
         body {
@@ -137,6 +139,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           <h2 class="mb-4" style="color: #ffc107;">Register</h2>
             <?php echo $registration_message;?>
             <form action="register.php" method="post" id="registerForm" novalidate>
+                <?php echo csrf_field(); ?>
                 <div class="mb-3 text-start">
                     <label for="name" class="form-label text-white-50">Name</label>
                     <input type="text" class="form-control" id="name" name="name" required placeholder="Enter your name">
@@ -169,7 +172,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <?php include('includes/footer.php');?>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // Client-side form validation and password strength
         document.addEventListener('DOMContentLoaded', function() {

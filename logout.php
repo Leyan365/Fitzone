@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once __DIR__ . '/includes/helpers.php';
 
 try {
     if (!session_unset()) {
@@ -10,8 +10,7 @@ try {
         throw new Exception("Failed to destroy the session.");
     }
 
-    header("Location: login.php");
-    exit;
+    redirect('login.php');
 } catch (Exception $e) {
     error_log($e->getMessage());
     echo "An error occurred while logging out. Please try again.";

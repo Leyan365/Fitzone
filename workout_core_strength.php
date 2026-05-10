@@ -1,3 +1,4 @@
+<?php require_once __DIR__ . '/includes/helpers.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>5 Exercises for Core Strength</title>
+    <?php include('includes/head_assets.php'); ?>
     <link rel="stylesheet" href="blog.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -54,10 +56,7 @@
             </article>
         </section>
     </main>
-    <footer>
-        <p>Contact Info:+94776828804</p><br>
-        <p>&copy; 2024 FitZone Gym. All rights reserved.</p>
-    </footer>
+     <?php include('includes/footer.php');?>
 </body>
 
 </html>

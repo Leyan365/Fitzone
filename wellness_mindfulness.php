@@ -1,3 +1,4 @@
+<?php require_once __DIR__ . '/includes/helpers.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mindfulness for a Healthier Life</title>
+    <?php include('includes/head_assets.php'); ?>
     <link rel="stylesheet" href="blog.css">
     <link rel="stylesheet" href="style.css">
 

@@ -18,16 +18,17 @@
                     <?php endif; ?>
                     <?php foreach ($queries_for_staff as $query): ?>
                         <tr>
-                            <td><?php echo htmlspecialchars($query['customer_name']); ?></td>
-                            <td><?php echo htmlspecialchars(substr($query['query_text'], 0, 50)) . '...'; ?></td>
-                            <td><?php echo date("Y-m-d", strtotime($query['created_at'])); ?></td>
-                            <td><span class="badge <?php echo ($query['status'] == 'replied') ? 'bg-success' : 'bg-warning'; ?>"><?php echo ucfirst($query['status']); ?></span></td>
+                            <td><?php echo e($query['customer_name']); ?></td>
+                            <td><?php echo e(substr($query['query_text'], 0, 50)) . '...'; ?></td>
+                            <td><?php echo e(date("Y-m-d", strtotime($query['created_at']))); ?></td>
+                            <td><span class="badge <?php echo ($query['status'] == 'replied') ? 'bg-success' : 'bg-warning'; ?>"><?php echo e(ucfirst($query['status'])); ?></span></td>
                             <td>
-                                <button class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#replyQueryModal" data-query-id="<?php echo $query['id']; ?>" data-query-text="<?php echo htmlspecialchars($query['query_text']); ?>">
+                                <button class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#replyQueryModal" data-query-id="<?php echo e($query['id']); ?>" data-query-text="<?php echo e($query['query_text']); ?>">
                                     <i class="bi bi-reply-fill"></i> View & Reply
                                 </button>
                                 <form action="dashboard.php" method="post" class="d-inline">
-                                    <input type="hidden" name="delete_query_id" value="<?php echo $query['id']; ?>">
+                                    <?php echo csrf_field(); ?>
+                                    <input type="hidden" name="delete_query_id" value="<?php echo e($query['id']); ?>">
                                     <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?');"><i class="bi bi-trash-fill"></i></button>
                                 </form>
                             </td>
@@ -43,6 +44,7 @@
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <form action="dashboard.php" method="post">
+                <?php echo csrf_field(); ?>
                 <div class="modal-header">
                     <h5 class="modal-title" id="replyQueryModalLabel">Reply to Query</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once __DIR__ . '/includes/helpers.php';
 include('db.php'); // Your database connection file
 
 $login_message = ''; // To store success/error messages
@@ -9,6 +9,8 @@ if (isset($_GET['registered']) && $_GET['registered'] == 'true') {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    require_csrf();
+
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
 
@@ -28,8 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['user_name'] = $user['name']; // Store name
                 $_SESSION['user_role'] = $user['role']; // Store role in session
                 session_regenerate_id(true);
-                header("Location: dashboard.php");
-                exit();
+                redirect('dashboard.php');
             } else {
                 $login_message = "<div class='alert alert-danger'>Invalid password.</div>";
             }
@@ -47,8 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - FitZone</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="custom.css">
+    <?php include('includes/head_assets.php'); ?>
     <style>
         /* Specific styles for the login page background and form */
         body {
@@ -125,6 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <h2 class="mb-4" style="color: #ffc107;">Login</h2>
             <?php echo $login_message; ?>
             <form action="login.php" method="post" novalidate>
+                <?php echo csrf_field(); ?>
                 <div class="mb-3 text-start">
                     <label for="email" class="form-label text-white-50">Email</label>
                     <input type="email" class="form-control" id="email" name="email" required placeholder="Enter your email">
@@ -147,7 +148,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <?php include('includes/footer.php');  ?>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // Client-side form validation for login
         document.addEventListener('DOMContentLoaded', function() {
