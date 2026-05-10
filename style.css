@@ -1,0 +1,8 @@
+body {
+    background: #000;
+}
+
+.blog-post strong,
+.blog-section strong {
+    color: #fff;
+}

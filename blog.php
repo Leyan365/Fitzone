@@ -53,7 +53,7 @@ $blogCategories = [
             'link' => 'workout_core_strength.php?id=1'
         ],
         [
-            'title' => 'Beginner’s Guide to Strength Training',
+            'title' => 'Beginner\'s Guide to Strength Training',
             'image' => 'images/strength_training_guide.jpg',
             'excerpt' => 'This guide covers the basics of strength training to help you get started safely and effectively.',
             'link' => 'workout_strength_training.php?id=2'
@@ -87,25 +87,29 @@ $blogCategories = [
 <body>
 <?php include('includes/header.php'); ?>
 
-<main>
-    <div class="container py-5">
-        <div class="text-center mb-5">
+<main class="page-main">
+    <section class="page-hero text-center">
+        <div class="container">
+            <p class="section-kicker">Guides and coaching notes</p>
             <h1 class="display-4 fw-bold text-yellow">FitZone Blog</h1>
             <p class="lead text-white-50">Explore our latest articles, tips, and plans to keep you motivated and healthy!</p>
         </div>
+    </section>
+
+    <div class="container py-5">
 
         <?php foreach ($blogCategories as $category => $posts): ?>
             <section class="mb-5">
-                <h2 class="text-yellow fw-bold mb-4"><?= htmlspecialchars($category) ?></h2>
+                <h2 class="blog-category-heading text-yellow fw-bold mb-4"><?= e($category) ?></h2>
                 <div class="row g-4">
                     <?php foreach ($posts as $post): ?>
                         <div class="col-lg-6 d-flex align-items-stretch">
                             <div class="card bg-dark text-white service-card h-100">
-                                <img src="<?= htmlspecialchars($post['image']) ?>" class="card-img-top" alt="<?= htmlspecialchars($post['title']) ?>" style="height: 250px; object-fit: cover;">
+                                <img src="<?= e($post['image']) ?>" class="card-img-top" alt="<?= e($post['title']) ?>" style="height: 250px; object-fit: cover;">
                                 <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title text-danger fw-bold"><?= htmlspecialchars($post['title']) ?></h5>
-                                    <p class="card-text text-white-50 flex-grow-1"><?= htmlspecialchars($post['excerpt']) ?></p>
-                                    <a href="<?= htmlspecialchars($post['link']) ?>" class="btn btn-danger mt-auto align-self-start">Read More</a>
+                                    <h5 class="card-title text-warning fw-bold"><?= e($post['title']) ?></h5>
+                                    <p class="card-text text-white-50 flex-grow-1"><?= e($post['excerpt']) ?></p>
+                                    <a href="<?= e($post['link']) ?>" class="btn btn-outline-warning mt-auto align-self-start">Read More</a>
                                 </div>
                             </div>
                         </div>

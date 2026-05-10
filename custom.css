@@ -14,6 +14,38 @@ main, section, footer {
   background-color: #000;
 }
 
+.page-main {
+  padding-top: 0;
+}
+
+.section-kicker {
+  color: #ffc107;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.page-hero {
+  padding: 7rem 0 4rem;
+  background:
+    linear-gradient(rgba(0,0,0,0.66), rgba(0,0,0,0.9)),
+    url('images/backgroundnew.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.page-hero h1 {
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.page-hero p {
+  max-width: 48rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /*-----------------------------------
    Hero Header
 -----------------------------------*/
@@ -35,13 +67,22 @@ main, section, footer {
   padding-top: 60px; /* Space for fixed navbar */
 }
 
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.85rem;
+  margin-top: 1.4rem;
+}
+
 /*-----------------------------------
    Navbar Styles
 -----------------------------------*/
 .navbar {
-  background-color: transparent !important;
-  box-shadow: none !important;
+  background-color: rgba(0,0,0,0.72) !important;
+  box-shadow: 0 0.6rem 1.6rem rgba(0,0,0,0.18) !important;
   padding: 1rem 2rem;
+  backdrop-filter: blur(10px);
 }
 
 /* Ensure navbar collapse is transparent on desktop */
@@ -98,16 +139,53 @@ hr.feature-divider {
    Service Cards
 -----------------------------------*/
 .service-card {
-  border: none;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 0.65rem;
+  background: #171a1d !important;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .service-card:hover {
-  transform: translateY(-10px);
+  transform: translateY(-6px);
   box-shadow: 0 1rem 3rem rgba(0,0,0,0.5);
 }
 .service-card .card-img-top {
   height: 250px;
   object-fit: cover;
+}
+
+.service-card .card-body {
+  padding: 1.15rem;
+}
+
+.feature-panel {
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 0.75rem;
+  background: #15181b;
+  box-shadow: 0 1rem 2.2rem rgba(0,0,0,0.24);
+}
+
+.membership-plan-card .img-fluid {
+  min-height: 100%;
+}
+
+.trainer-card img {
+  filter: saturate(1.04) contrast(1.02);
+}
+
+.blog-category-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.blog-category-heading::before {
+  content: "";
+  display: inline-block;
+  width: 2.3rem;
+  height: 0.18rem;
+  border-radius: 999px;
+  background: #ffc107;
 }
 
 /*-----------------------------------

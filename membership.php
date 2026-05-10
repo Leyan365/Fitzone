@@ -62,18 +62,21 @@ $trainers = [
 <body>
 <?php include('includes/header.php'); ?>
 
-<main>
+<main class="page-main">
+    <section class="page-hero text-center">
+        <div class="container">
+            <p class="section-kicker">Flexible fitness access</p>
+            <h1 class="display-4 fw-bold text-yellow">Membership Plans</h1>
+            <p class="lead text-white-50">Choose the plan that matches your goals, schedule, and level of support.</p>
+        </div>
+    </section>
+
     <section class="py-5">
         <div class="container">
-            <div class="text-center mb-5">
-                <h1 class="display-4 fw-bold text-yellow">Membership Plans</h1>
-                <p class="lead text-white-50">Choose the plan that's right for you.</p>
-            </div>
-
             <div class="row g-4 justify-content-center">
                 <?php foreach ($plans as $plan): ?>
                 <div class="col-lg-6 d-flex align-items-stretch">
-                    <div class="card bg-dark text-white service-card w-100">
+                    <div class="card bg-dark text-white service-card membership-plan-card w-100">
                         <div class="row g-0">
                             <div class="col-md-5">
                                 <img src="<?= e($plan['image']) ?>" class="img-fluid rounded-start h-100" alt="<?= e($plan['name']) ?>" style="object-fit: cover;">
@@ -105,6 +108,7 @@ $trainers = [
     <section class="py-5">
         <div class="container">
             <div class="text-center mb-5">
+                <p class="section-kicker">Expert guidance</p>
                 <h1 class="display-4 fw-bold text-yellow">Meet Our Trainers</h1>
                 <p class="lead text-white-50">Expert guidance for your fitness journey.</p>
             </div>
@@ -112,7 +116,7 @@ $trainers = [
             <div class="row g-4">
                 <?php foreach ($trainers as $trainer): ?>
                 <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-                    <div class="card text-white bg-dark service-card text-center h-100">
+                    <div class="card text-white bg-dark service-card trainer-card text-center h-100">
                         <img src="<?= e($trainer['image']) ?>" class="card-img-top" alt="<?= e($trainer['name']) ?>" style="height: 300px; object-fit: cover; object-position: top;">
                         <div class="card-body">
                             <h4 class="card-title"><?= e($trainer['name']) ?></h4>

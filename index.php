@@ -17,12 +17,17 @@ require_once __DIR__ . '/includes/helpers.php';
     <div class="container d-flex flex-column align-items-center justify-content-center h-100 text-white">
         <h1 class="display-3 fw-bold">FitZone Fitness Center</h1>
         <p class="lead">Your journey to health and fitness starts here.</p>
+        <div class="hero-actions">
+            <a href="register.php" class="btn btn-warning btn-lg fw-bold">Join Now</a>
+            <a href="membership.php" class="btn btn-outline-light btn-lg">View Plans</a>
+        </div>
     </div>
 </header>
 
 <main>
     <section class="py-5">
         <div class="container text-center">
+            <p class="section-kicker">Train with purpose</p>
             <h2 class="text-yellow fw-bold">Build Your Ideal Body</h2>
             <img
                 src="images/body15.webp"
@@ -48,8 +53,9 @@ require_once __DIR__ . '/includes/helpers.php';
 
     <section class="py-5">
         <div class="container">
-            <div class="row align-items-center g-5">
+            <div class="row align-items-center g-5 feature-panel p-4">
                 <div class="col-lg-6">
+                    <p class="section-kicker">Mind and body</p>
                     <h3 class="text-white mb-3">A Transformative Journey for Body & Mind</h3>
                     <p class="text-white-50">Working out is a transformative journey that enhances both your body and mind. Each session in the gym challenges you to push your limits. Fitness not only improves your physical appearance but also cultivates a positive mindset.</p>
                     <p class="text-white-50">Every drop of sweat brings you closer to your goals. Each workout is an opportunity to challenge yourself and discover what you are truly capable of. Embrace the transformative power of fitness at Fitzone fitness Center!</p>
@@ -65,6 +71,7 @@ require_once __DIR__ . '/includes/helpers.php';
 
     <section class="py-5">
         <div class="container">
+            <p class="section-kicker text-center">What we offer</p>
             <h2 class="text-center text-yellow fw-bold mb-5">Our Services</h2>
             <div class="row g-4">
                 <?php
@@ -84,10 +91,10 @@ require_once __DIR__ . '/includes/helpers.php';
                 ?>
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="card text-white bg-dark service-card h-100">
-                            <img src="<?= htmlspecialchars($service['img']) ?>" class="card-img-top" alt="<?= htmlspecialchars($service['title']) ?>">
+                            <img src="<?= e($service['img']) ?>" class="card-img-top" alt="<?= e($service['title']) ?>">
                             <div class="card-body d-flex flex-column">
-                                <h5 class="card-title"><?= htmlspecialchars($service['title']) ?></h5>
-                                <p class="card-text flex-grow-1"><?= htmlspecialchars($service['text']) ?></p>
+                                <h5 class="card-title"><?= e($service['title']) ?></h5>
+                                <p class="card-text flex-grow-1"><?= e($service['text']) ?></p>
                             </div>
                         </div>
                     </div>
@@ -108,7 +115,7 @@ require_once __DIR__ . '/includes/helpers.php';
 
     <section class="py-5">
         <div class="container">
-            <div class="row align-items-center g-5">
+            <div class="row align-items-center g-5 feature-panel p-4">
                 <div class="col-lg-6">
                     <img src="images/aboutuswall.webp" class="img-fluid rounded shadow-lg" alt="About FitZone">
                 </div>
