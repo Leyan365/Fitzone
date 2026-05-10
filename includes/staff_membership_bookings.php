@@ -52,7 +52,7 @@ $stmt->close();
 
 <?php if ($staff_feature_message) echo $staff_feature_message; ?>
 
-<div class="card text-white dashboard-card mt-4">
+<div class="card text-white dashboard-card mt-4" id="memberships">
     <div class="card-header dashboard-card-header"><h4>Membership Requests</h4></div>
     <div class="card-body">
         <div class="table-responsive">
@@ -101,7 +101,7 @@ $stmt->close();
     </div>
 </div>
 
-<div class="card text-white dashboard-card mt-4">
+<div class="card text-white dashboard-card mt-4" id="bookings">
     <div class="card-header dashboard-card-header"><h4>Recent Class Bookings</h4></div>
     <div class="card-body">
         <div class="table-responsive">

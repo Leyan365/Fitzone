@@ -196,14 +196,14 @@ $class_sessions = class_sessions_for_customer($conn, $user_id);
     </div>
 </div>
 
-<div class="card text-white dashboard-card mt-4">
+<div class="card text-white dashboard-card mt-4" id="membership">
     <div class="card-header dashboard-card-header"><h4>Membership Plans</h4></div>
     <div class="card-body">
         <?php if ($membership_message) echo $membership_message; ?>
         <div class="row g-3">
             <?php foreach ($plans as $plan_name => $plan): ?>
                 <div class="col-md-6 col-xl-4">
-                    <div class="border rounded p-3 h-100">
+                    <div class="dashboard-plan-card h-100">
                         <h5 class="text-warning"><?php echo e($plan_name); ?></h5>
                         <p class="mb-1 fw-bold"><?php echo e($plan['price']); ?> / month</p>
                         <p class="text-white-50 small"><?php echo e($plan['summary']); ?></p>
@@ -246,7 +246,7 @@ $class_sessions = class_sessions_for_customer($conn, $user_id);
     </div>
 </div>
 
-<div class="card text-white dashboard-card mt-4">
+<div class="card text-white dashboard-card mt-4" id="classes">
     <div class="card-header dashboard-card-header"><h4>Book a Class</h4></div>
     <div class="card-body">
         <?php if ($booking_message) echo $booking_message; ?>
@@ -293,7 +293,7 @@ $class_sessions = class_sessions_for_customer($conn, $user_id);
     </div>
 </div>
 
-<div class="card text-white dashboard-card mt-4">
+<div class="card text-white dashboard-card mt-4" id="queries">
     <div class="card-header dashboard-card-header"><h4>My Queries & Replies</h4></div>
     <div class="card-body">
         <?php if (empty($my_queries)): ?>

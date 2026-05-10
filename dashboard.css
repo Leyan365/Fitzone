@@ -1,83 +1,245 @@
-body {
-    background-color: black;
-    color: white;
+.dashboard-page {
+    background:
+        radial-gradient(circle at top left, rgba(255, 193, 7, 0.14), transparent 28rem),
+        linear-gradient(135deg, #050505 0%, #101214 52%, #050505 100%);
 }
 
-.container {
-    padding: 20px;
+.dashboard-page .navbar {
+    background: rgba(5, 5, 5, 0.92) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
 }
 
-.table-container {
+.dashboard-shell {
+    padding-top: 82px;
+    background: transparent;
+}
+
+.dashboard-sidebar {
+    min-height: calc(100vh - 82px);
+    padding: 1.25rem 0.875rem;
+    background: rgba(10, 12, 14, 0.88);
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dashboard-sidebar .position-sticky {
+    top: 92px;
+}
+
+.sidebar-heading {
     display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin: 0 0 1.25rem;
+    padding: 0.35rem 0.5rem;
+    color: #ffc107;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.sidebar-mark {
+    display: inline-flex;
+    align-items: center;
     justify-content: center;
-    margin-top: 20px;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    color: #111;
+    background: #ffc107;
 }
 
-table {
-    color: white;
-    border-collapse: collapse;
-    width: 80%;
+.dashboard-nav {
+    gap: 0.35rem;
 }
 
-th,
-td {
-    border: 1px solid #28a745;
-    padding: 10px;
-    text-align: center;
+.dashboard-nav .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    min-height: 2.65rem;
+    padding: 0.7rem 0.75rem;
+    border-radius: 0.5rem;
+    color: rgba(255, 255, 255, 0.74);
+    font-weight: 600;
 }
 
-a {
-    color: red;
-    text-decoration: none;
+.dashboard-nav .nav-link:hover,
+.dashboard-nav .nav-link.active {
+    color: #fff;
+    background: rgba(255, 193, 7, 0.14);
 }
 
-label,
-input,
-select,
-button {
-    color: white;
+.dashboard-content {
+    padding: 1.4rem 1.6rem 2.5rem;
 }
 
-input,
-select {
-    background-color: #363434;
-    border: 1px solid white;
-    padding: 5px;
+.dashboard-hero {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.4rem;
+    padding: 1.35rem 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.75rem;
+    background: rgba(19, 22, 25, 0.86);
+    box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.28);
 }
 
-button {
-    background-color: #28a745;
-    border: none;
-    padding: 8px 12px;
-    cursor: pointer;
+.dashboard-hero h1 {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(1.55rem, 2.6vw, 2.35rem);
+    font-weight: 800;
+    letter-spacing: 0;
 }
 
-button:hover {
-    background-color: #218838;
+.dashboard-eyebrow {
+    margin: 0 0 0.35rem;
+    color: #ffc107;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
 }
 
-/* New styles for the query form */
-form label {
-    font-size: 1.4em; /* Increases font size of "Your Query:" */
+.dashboard-subtitle {
+    margin: 0.55rem 0 0;
+    max-width: 48rem;
+    color: rgba(255, 255, 255, 0.68);
 }
 
-textarea {
-    width: 50%; /* Sets the textarea width to 50% of the screen */
-    padding: 10px;
-    background-color: #363434;
-    color: white;
-    border: 1px solid white;
-    font-size: 1.5em;
-    border-radius: 5px;
+.dashboard-card {
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.65rem;
+    background: rgba(24, 27, 31, 0.92);
+    box-shadow: 0 0.8rem 1.8rem rgba(0, 0, 0, 0.2);
 }
 
-button[name="submit_query"] {
-    font-size: 1.1em; /* Increases font size of "Submit Query" button */
-    padding: 10px 15px; /* Adds some padding for better appearance */
-    border-radius: 5px;
+.dashboard-card-header,
+.dashboard-card .card-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.035);
+    color: #f8f9fa;
+    font-weight: 800;
 }
 
-h2,
-h3 {
-    color: #f2f2f2;
+.dashboard-card .card-header h4 {
+    margin: 0;
+    font-size: 1.05rem;
+}
+
+.dashboard-card .card-body {
+    padding: 1.15rem;
+}
+
+.dashboard-card .card-title {
+    font-weight: 800;
+}
+
+.dashboard-plan-card {
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.65rem;
+    background: rgba(255, 255, 255, 0.035);
+}
+
+.dashboard-page .table-responsive {
+    max-height: 34rem;
+    border-radius: 0.5rem;
+}
+
+.dashboard-page .table {
+    margin-bottom: 0;
+    vertical-align: middle;
+}
+
+.dashboard-page .table th {
+    color: #ffc107;
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.dashboard-page .table td {
+    color: rgba(255, 255, 255, 0.86);
+}
+
+.dashboard-page .form-control,
+.dashboard-page .form-select {
+    min-height: 2.55rem;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 0.5rem;
+    background-color: rgba(5, 5, 5, 0.58);
+    color: #fff;
+}
+
+.dashboard-page .form-control:focus,
+.dashboard-page .form-select:focus {
+    border-color: #ffc107;
+    box-shadow: 0 0 0 0.18rem rgba(255, 193, 7, 0.18);
+}
+
+.dashboard-page textarea.form-control {
+    min-height: 8rem;
+}
+
+.dashboard-page .btn {
+    border-radius: 0.5rem;
+    font-weight: 700;
+}
+
+.dashboard-page .badge {
+    min-width: 4.8rem;
+    padding: 0.45rem 0.65rem;
+    border-radius: 999px;
+}
+
+.dashboard-page .accordion-item,
+.dashboard-page .accordion-button {
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+.dashboard-page .accordion-button:focus {
+    box-shadow: none;
+}
+
+.dashboard-page .modal-content {
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 0.75rem;
+    background: #16191d;
+}
+
+@media (max-width: 767.98px) {
+    .dashboard-shell {
+        padding-top: 76px;
+    }
+
+    .dashboard-sidebar {
+        min-height: auto;
+        padding: 0.85rem 1rem;
+        border-right: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .dashboard-nav {
+        flex-direction: row !important;
+        overflow-x: auto;
+        padding-bottom: 0.35rem;
+    }
+
+    .dashboard-nav .nav-link {
+        white-space: nowrap;
+    }
+
+    .dashboard-content {
+        padding: 1rem;
+    }
+
+    .dashboard-hero {
+        flex-direction: column;
+        padding: 1.1rem;
+    }
 }
