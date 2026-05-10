@@ -69,10 +69,49 @@ $stmt = $conn->prepare("SELECT id, name, email, role FROM users");
 $stmt->execute();
 $users = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 $stmt->close();
+
+$pending_memberships = pending_membership_count($conn);
+$active_bookings = active_booking_count($conn);
 ?>
 
 <?php if ($message) echo $message; ?>
 <?php if ($query_message) echo $query_message; ?>
+
+<div class="row">
+    <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card text-white dashboard-card h-100">
+            <div class="card-header dashboard-card-header d-flex justify-content-between align-items-center">
+                Users <i class="bi bi-people-fill text-warning fs-3"></i>
+            </div>
+            <div class="card-body">
+                <h2 class="card-title"><?php echo count($users); ?></h2>
+                <p class="card-text">Registered system users.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card text-white dashboard-card h-100">
+            <div class="card-header dashboard-card-header d-flex justify-content-between align-items-center">
+                Pending Memberships <i class="bi bi-card-checklist text-info fs-3"></i>
+            </div>
+            <div class="card-body">
+                <h2 class="card-title"><?php echo e($pending_memberships); ?></h2>
+                <p class="card-text">Membership requests to review.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card text-white dashboard-card h-100">
+            <div class="card-header dashboard-card-header d-flex justify-content-between align-items-center">
+                Active Bookings <i class="bi bi-calendar-check-fill text-success fs-3"></i>
+            </div>
+            <div class="card-body">
+                <h2 class="card-title"><?php echo e($active_bookings); ?></h2>
+                <p class="card-text">Current class bookings.</p>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="card text-white dashboard-card mt-4">
     <div class="card-header dashboard-card-header d-flex justify-content-between align-items-center">
@@ -112,6 +151,8 @@ $stmt->close();
         </div>
     </div>
 </div>
+
+<?php include(dirname(__FILE__) . '/../includes/staff_membership_bookings.php'); ?>
 
 <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true" data-bs-theme="dark">
     <div class="modal-dialog modal-dialog-centered">

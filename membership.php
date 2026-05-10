@@ -76,19 +76,19 @@ $trainers = [
                     <div class="card bg-dark text-white service-card w-100">
                         <div class="row g-0">
                             <div class="col-md-5">
-                                <img src="<?= htmlspecialchars($plan['image']) ?>" class="img-fluid rounded-start h-100" alt="<?= htmlspecialchars($plan['name']) ?>" style="object-fit: cover;">
+                                <img src="<?= e($plan['image']) ?>" class="img-fluid rounded-start h-100" alt="<?= e($plan['name']) ?>" style="object-fit: cover;">
                             </div>
                             <div class="col-md-7">
                                 <div class="card-body d-flex flex-column h-100">
-                                    <h3 class="card-title text-yellow"><?= htmlspecialchars($plan['name']) ?></h3>
-                                    <p class="card-text text-white-50 flex-grow-1"><?= htmlspecialchars($plan['description']) ?></p>
+                                    <h3 class="card-title text-yellow"><?= e($plan['name']) ?></h3>
+                                    <p class="card-text text-white-50 flex-grow-1"><?= e($plan['description']) ?></p>
                                     <ul class="list-unstyled text-white-50 mb-3">
                                         <?php foreach ($plan['features'] as $feature): ?>
-                                            <li>✓ <?= htmlspecialchars($feature) ?></li>
+                                            <li>&check; <?= e($feature) ?></li>
                                         <?php endforeach; ?>
                                     </ul>
                                     <div class="mt-auto">
-                                        <h4 class="fw-bold"><?= htmlspecialchars($plan['price']) ?> <small class="text-white-50 fw-normal">/ month</small></h4>
+                                        <h4 class="fw-bold"><?= e($plan['price']) ?> <small class="text-white-50 fw-normal">/ month</small></h4>
                                     </div>
                                 </div>
                             </div>
@@ -113,9 +113,9 @@ $trainers = [
                 <?php foreach ($trainers as $trainer): ?>
                 <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
                     <div class="card text-white bg-dark service-card text-center h-100">
-                        <img src="<?= htmlspecialchars($trainer['image']) ?>" class="card-img-top" alt="<?= htmlspecialchars($trainer['name']) ?>" style="height: 300px; object-fit: cover; object-position: top;">
+                        <img src="<?= e($trainer['image']) ?>" class="card-img-top" alt="<?= e($trainer['name']) ?>" style="height: 300px; object-fit: cover; object-position: top;">
                         <div class="card-body">
-                            <h4 class="card-title"><?= htmlspecialchars($trainer['name']) ?></h4>
+                            <h4 class="card-title"><?= e($trainer['name']) ?></h4>
                             <p class="card-text text-white-50"><?= $trainer['specialty'] ?></p>
                         </div>
                     </div>

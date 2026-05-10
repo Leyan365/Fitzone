@@ -11,6 +11,9 @@ $stmt->execute();
 $result = $stmt->get_result()->fetch_assoc();
 $customer_count = $result['count'];
 $stmt->close();
+
+$pending_memberships = pending_membership_count($conn);
+$active_bookings = active_booking_count($conn);
 ?>
 
 <?php if ($query_message) echo $query_message; // Display feedback messages from query logic ?>
@@ -35,6 +38,28 @@ $stmt->close();
             <div class="card-body">
                 <h2 class="card-title"><?php echo $customer_count; ?></h2>
                 <p class="card-text">Total active customers.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card text-white dashboard-card h-100">
+             <div class="card-header dashboard-card-header d-flex justify-content-between align-items-center">
+                Pending Memberships <i class="bi bi-card-checklist text-info fs-3"></i>
+            </div>
+            <div class="card-body">
+                <h2 class="card-title"><?php echo e($pending_memberships); ?></h2>
+                <p class="card-text">Plans waiting for staff review.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card text-white dashboard-card h-100">
+             <div class="card-header dashboard-card-header d-flex justify-content-between align-items-center">
+                Active Bookings <i class="bi bi-calendar-check-fill text-success fs-3"></i>
+            </div>
+            <div class="card-body">
+                <h2 class="card-title"><?php echo e($active_bookings); ?></h2>
+                <p class="card-text">Classes currently booked.</p>
             </div>
         </div>
     </div>
@@ -134,5 +159,7 @@ $stmt->close();
         </div>
     </div>
 </div>
+
+<?php include(dirname(__FILE__) . '/../includes/staff_membership_bookings.php'); ?>
 
 <?php include(dirname(__FILE__) . '/../includes/query_management_view.php'); ?>

@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/includes/helpers.php';
+require_once __DIR__ . '/includes/fitness_features.php';
 include('db.php');
 
 $current_user = require_login($conn);
@@ -11,6 +12,8 @@ if (!is_allowed_role($user_role)) {
     http_response_code(403);
     exit('Access denied.');
 }
+
+ensure_fitness_feature_tables($conn);
 
 // The main layout for all dashboards
 ?>
